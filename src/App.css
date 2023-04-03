@@ -22,6 +22,7 @@
   transition: box-shadow 0.3s ease-in;
   border: 4px double #722929;
   background-color: antiquewhite;
+  min-width: 200px;
 }
 
 #card:hover {

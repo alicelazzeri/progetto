@@ -1,12 +1,15 @@
 import { Component } from "react";
 import { Card, Badge } from "react-bootstrap";
+import CommentArea from "./CommentArea";
 class SingleBook extends Component {
   state = {
     selected: false,
+    asin: "",
   };
   toggleBook = () => {
     this.setState(prevState => ({
       selected: !prevState.selected,
+      asin: !prevState.selected ? this.props.asin : "",
     }));
   };
 
@@ -24,6 +27,7 @@ class SingleBook extends Component {
               {this.props.price} €
             </Badge>
           </Card.Text>
+          {this.state.selected && <CommentArea asin={this.props.asin} />}
         </Card.Body>
       </Card>
     );
