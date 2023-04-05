@@ -1,16 +1,15 @@
 import { Component } from "react";
-import { Badge, ListGroupItem } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
+import SingleComment from "./SingleComment";
 
 class CommentsList extends Component {
   render() {
     return (
-      <ListGroupItem className="d-flex justify-content-between">
-        <span>Autore: {this.props.author}</span>
-        <span>{this.props.comment}</span>
-        <span>
-          Rate:<Badge bg="warning">{this.props.rate}</Badge>
-        </span>
-      </ListGroupItem>
+      <ListGroup>
+        {this.props.comments.map(comment => (
+          <SingleComment key={comment._id} author={comment.author} comment={comment.comment} rate={comment.rate} />
+        ))}
+      </ListGroup>
     );
   }
 }

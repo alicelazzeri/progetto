@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { ListGroup } from "react-bootstrap";
+import AddComment from "./AddComment";
 import CommentsList from "./CommentsList";
 
 class CommentArea extends Component {
@@ -15,25 +15,25 @@ class CommentArea extends Component {
         },
       });
       if (response.ok) {
-        const data = await response.json();
-        this.setState({ comments: data });
+        const commentsArr = await response.json();
+        this.setState({ comments: commentsArr }); // porto fuori l'array di dati ottenuti inserendoli nello state
       }
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
   componentDidMount() {
     this.request();
   }
 
+  componentWillUnmount() {}
+
   render() {
     return (
-      <ListGroup>
-        {this.state.comments.map(comment => (
-          <CommentsList key={comment._id} author={comment.author} comment={comment.comment} rate={comment.rate} />
-        ))}
-        ;
-      </ListGroup>
+      <>
+        <AddComment asin={this.props.asin} request={this.request} />
+        <CommentsList comments={this.state.comments} />
+      </>
     );
   }
 }

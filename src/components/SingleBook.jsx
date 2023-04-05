@@ -4,7 +4,6 @@ import CommentArea from "./CommentArea";
 class SingleBook extends Component {
   state = {
     selected: false,
-    asin: "",
   };
   toggleBook = () => {
     this.setState(prevState => ({
@@ -18,8 +17,15 @@ class SingleBook extends Component {
       border: this.state.selected ? "10px double #4B0082" : "4px double #722929",
     };
     return (
-      <Card onClick={this.toggleBook} id="card" style={selectedStyle}>
-        <Card.Img className="img-fluid" variant="top" src={this.props.img} />
+      <Card>
+        <Card.Img
+          className="img-fluid"
+          variant="top"
+          src={this.props.img}
+          onClick={this.toggleBook}
+          id="card"
+          style={selectedStyle}
+        />
         <Card.Body>
           <Card.Title className="text-truncate">{this.props.title}</Card.Title>
           <Card.Text>
